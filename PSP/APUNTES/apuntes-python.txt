@@ -1,0 +1,52 @@
+# Crear función:
+# para crear los doc string:
+
+"""	
+Una función.
+
+Imprime...
+"""
+
+def print_even(num:int) -> None: # Aqui estamos como comentando definiendo que se espera en vez de None puede ser str(String)
+	if num % 2 == 0:
+		print(f"{num} es par")
+	else: 
+		print(f"{num} es impar")
+
+
+print_even(11)
+print_even(34)
+
+print(res1, "\n", res2)
+
+# Hasta ahora se daban solamente enteros que es lo que se espera el programa y seguidamente si le pones la linea
+# de abajo te avisa el IDE.
+# print_even("hola mundo")
+
+# Cada vez que nos encontramos con (:) estamos introduciendo bloques, todo lo que esta detras de ese caracter
+# está dentro de este.
+
+
+# -------------------------------------------------------------------------------------------------------------------
+
+# Módulos en Python:
+# Son equivalente a las librerias, son ficheros en los que se definen variables, funciones y clases para que sean
+# utilizados(utilización->import).
+# Se pueden importar funciones específicas en vez de los módulos completos. Ej: import math / from math import sqrt.
+# Para importar un módulo con alias: import numpy as np(crear abreviaciones).
+
+def print_even(num:int) -> str:
+	if num % 2 == 0:
+		return f"{num} es par"
+	else:
+		return f"{num} es impar"
+
+if __name__=="__main__":
+	res1 = print_even(11)
+	res2 = print_even(34)
+
+	print(res1, "|n", res2)
+
+# -------------------------------------------------------------------------------------------------------------------
+
+# Siempre se debe dejar 2 lineas entre funciones.

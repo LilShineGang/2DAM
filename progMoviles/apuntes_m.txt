@@ -1,0 +1,22 @@
+Logica -> View
+
+			UI
+		      ------
+Inmutable
+---------------------
+ViewModel.			Logica de la UI
+ - Lista
+ - Selected
+
+Estado				Validacion de datos
+Estados				Activar / Desactivar
+StateFlow -> Mutable		Mostrar o no componentes(errores, imagenes, colores...)
+	 |-> Inmutable
+
+
+Los ViewModel se pueden compartir entre vistas.
+
+
+
+PREGUNTA EXAMEN
+Que es un ViewModel y para que se usa.

@@ -1,0 +1,86 @@
+# Archivo requirements
+
+- Uvicorn es el servicio que nos permite escribir middleware en python.
+
+--
+uvicorn app.main:app --host 0.0.0.0 --port 8080 --reload
+--
+
+- Pydanic nos permite crear dataclases, controla los tipos de datos - No puedes utilizar FastApi sin Pydantic, es obligatorio tenerlo - Hay que poner obligatoriamente los tipos por que sino pydanic falla
+
+- Tambien existe guvicorn pero no se usa por que no tiene manejo de multitarea.
+
+
+## En la estructura del proyecto las carpteas:
+
+- **db**(la base de datos.
+- **app**: archivos python y el codigo de la aplicacion. Dentro estarán las clases: **main.py** y __ __init__ __.py(carpeta donde esta == modulo importable para otras clases).
+- **docker**(los archivos docker) son imprescindibles.                                  
+
+## FastAPI
+
+--
+@app.post("/users/signup", status_code = status.HTTP_201_CREATED)
+--
+
+@app.post(llamamos funcion post de la api).
+
+## UserIn
+Meter datos del json que tendremos que recibir en la peticion. 
+
+Ej:
+
+--
+username: str
+pwd: str
+name: str
+--
+
+## Como organizar las tablas de peticiones.
+
+Dentro de carpeta **"app"** creamos carpeta **"routers"** y crearemos **"archivos.py"** segun las tablas que creemos.
+
+--
+user.py / game.py / forum.py... 
+--
+
+Dentro de cada clase tendremos que poner:
+
+```
+router = APIRouter (
+	prefix = "/users",
+	tags = ["Users]
+)
+
+class UserDb(BaseModel):
+	id: str
+	name: str
+	username: str
+	password: str
+
+class UserIn(BaseModel):
+	username: str
+	password: str
+	name: str
+
+users: list[UserDb] = []
+
+@router.post("/signup/", status_code.HTTP_201_CREATED)
+async def create_user(userIn:UserIn):
+	usersFound = [u for u in usres if u.username == userIn.username]
+	id len(usersFound) < 0:
+		raise HTTPException(
+			status_code = status.HTTP_409_CONFLICT,
+			detail = "Username already exists"
+)
+
+users.append(
+	newUser = UserDb(
+		id = len(users) + 1,
+		name = userIn.name,
+		username = userIn.username,
+		password = userIn.password
+	)
+)
+
+```

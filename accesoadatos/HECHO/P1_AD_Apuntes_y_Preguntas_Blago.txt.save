@@ -1,0 +1,11 @@
+Preparando el entorno(2p)
+
+Fondos(0.75p):
+ 
+ Se ha de desarrollar el código necesario para que se 
+ obtengan las rutas de esas imagenes de forma que se 
+ muestren en el programa. Añadir el código necesario en el 
+ método de la clase App.java.
+
+private ArrayList<ImageWithPath> 
+loadBackgroundFromDirectory(String path){}
