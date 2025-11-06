@@ -1,0 +1,48 @@
+1. Cargar Bloques desde JSON (Block.java)
+Qué hicimos: Completamos el método loadBlocks(String path) para leer el archivo blocks.json usando Gson.
+Cómo: Usamos FileReader para leer el JSON, GsonBuilder con un adaptador para Rectangle2D (ya existente), y cargamos los datos en blockData. También cargamos la imagen desde el path en el JSON.
+Por qué: Los bloques se definen en JSON con grupos y posiciones, y la app los necesita para mostrar los elementos arrastrables.
+Resultado: Ahora la app carga los bloques correctamente al iniciar.
+
+2. Añadir Anotaciones JAXB para XML (Varias clases)
+Qué hicimos: Añadimos anotaciones @XmlRootElement, @XmlAccessorType, etc., a las clases Level, Levels, Block, Size.
+Cómo: En cada clase, pusimos las anotaciones arriba de la clase y en los campos serializables. Para Rectangle2D, usamos @XmlJavaTypeAdapter con el adaptador existente.
+Por qué: JAXB necesita estas anotaciones para serializar a XML. Las clases deben ser Serializable para binario.
+Resultado: Las clases ahora se pueden guardar/cargar en XML.
+
+3. Implementar Save/Load en Level.java
+Qué hicimos: Rellenamos los métodos load(File file) y save(Level level, File file) para JSON, XML, binario.
+Cómo: Según la extensión del archivo, usamos Gson para JSON, JAXB para XML, ObjectInputStream/ObjectOutputStream para binario.
+Por qué: El README pide serializar un nivel en estos formatos.
+Resultado: Se puede guardar/cargar un solo nivel por archivo.
+
+4. Implementar Save/Load en Levels.java
+Qué hicimos: Rellenamos loadJSON, loadXML, loadBin, saveJSON, saveXML, saveBin.
+Cómo: Similar a Level, pero para la clase Levels que contiene una lista de niveles.
+Por qué: El README pide guardar/cargar conjuntos de niveles.
+Resultado: Se guarda/carga múltiples niveles en un archivo.
+
+5. Cambiar Menús en App.java
+Qué hicimos: Cambiamos Level.save/load por Levels.save/load en los menús Save/Load.
+Cómo: En saveMenuItem.setOnAction, usamos Levels.save(this.levels, file). En loadMenuItem.setOnAction, usamos Levels m = Levels.load(file); this.levels = m;.
+Por qué: Para guardar/cargar niveles en conjunto, no uno solo.
+Resultado: Los menús ahora manejan múltiples niveles.
+
+6. Añadir Menú "Transform to HTML" en App.java
+Qué hicimos: Añadimos un nuevo menú en Options llamado "Transform to HTML".
+Cómo: Creamos un MenuItem, lo añadimos a optionsMenu, y en su acción, cargamos un XML, generamos HTML con una tabla de bloques, y lo guardamos como .html.
+Por qué: El README pide transformar XML a HTML para ver los niveles.
+Resultado: Se puede convertir un nivel XML a una página HTML simple.
+
+7. Arreglar Errores (como JSON malformado)
+Qué hicimos: Cambiamos saveJSON para usar try-with-resources y cerrar el writer correctamente. Limpiamos paths con barras invertidas.
+Cómo: Añadimos try (FileWriter writer = new FileWriter(file)) y level.setBackgroundImage(...replace("\\", "/")).
+Por qué: El JSON se truncaba o tenía caracteres inválidos.
+Resultado: Los archivos se guardan correctamente ahora.
+
+8. Probar la App
+Qué hicimos: Ejecutamos ./gradlew run, creamos niveles, guardamos/cargamos en formatos, probamos HTML.
+Cómo: Verificamos que los bloques carguen, los niveles se serialicen bien, y el HTML se genere.
+Por qué: Para asegurar que todo funcione según el README.
+Resultado: La app cumple con los requisitos: carga bloques, serializa niveles, transforma a HTML.
+Todo el código añadido es simple, usa bucles básicos, excepciones, y conceptos de Java básico. No usamos nada avanzado para que sea fácil de entender. El proyecto ahora está completo según el README.

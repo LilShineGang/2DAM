@@ -1,0 +1,47 @@
+$ docker image inspect (id de la imagen): 
+Toda la metainformacion de la imagen(fecha de creacion, version de docker con la que se creo...)
+
+PUERTOS EN APLICACIONES WEB
+----------------------------
+
+todas las aplicaciones web estan dockerizadas o guardadas en contenedores
+
+El problema: 
+	- Los servidores web abren puertos donde escuchan peticiones.
+	
+Soluciones:
+	- Podemos exponer un puerto al exterior para que redirija el trafico.
+
+Creacion de puertos en docker:
+	- $ docker container run -d -p(opcion -p para abrir el puerto) 8080:80 nginx
+	- El primer puerto puede ser el que queramos pero el segundo debe de ser el que se puso cuando se creo la imagen.
+
+Al crear el dockerfile:
+	- FROM nginx
+	- COPY ...
+	- EXPOSE 80 (puerto con el que se creó)
+
+En resumen: 
+	- Con el mapeo de puertos le definimos con que puerto local nos permitira acceder al puerto de la imagen.
+	- Ej: ...-p 1234:80 xginx (esto hará que con el puerto 1234 -> 80 podamos acceder al puerto 80)
+
+EJ PARA LA PRACTICA:
+
+/project/
+	/src/
+	Dockerfile
+	(CONTENIDO DEL DOCKERFILE:
+		- FROM httpd
+		-
+		- COPY ./src/ /usr/local/apache2/htdocs/
+		-
+		- EXPOSE 80 (puerto)
+	example.html(hacer pagina simple)
+	
+docker image build -t nombre .
+docker container run -d -p 1234:80 nombre
+
+(no puede ejecutarse 1 puerto 2 veces, si queremos utilizarlo en otra imagen primero tenemos que pararlo en el 
+anterior sitio donde lo hemos utilizado)
+
+

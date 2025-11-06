@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Índice de Páginas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            margin: 20px 0;
+        }
+        .links {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .link-card {
+            background: white;
+            border: 1px solid #e1e1e1;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        .link-card:hover {
+            transform: scale(1.05);
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+            font-size: 1.2rem;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Índice de Páginas</h1>
+        <div class="links">
+            <!-- Enlace a Página 1 -->
+            <div class="link-card">
+                <h2><a href="clothes.html">Ropa</a></h2>
+                <p>Explora nuestra colección de ropa moderna y cómoda para todas las ocasiones.</p>
+            </div>
+
+            <!-- Enlace a Página 2 -->
+            <div class="link-card">
+                <h2><a href="shoes.html">Zapatillas</a></h2>
+                <p>Descubre nuestra amplia variedad de zapatillas deportivas y casuales.</p>
+            </div>
+
+            <!-- Enlace a Página 3 -->
+            <div class="link-card">
+                <h2><a href="props.html">Accesorios</a></h2>
+                <p>Complementa tu estilo con nuestros exclusivos accesorios de moda.</p>
+            </div>
+
+            <!-- Enlace a Página 4 -->
+            <div class="link-card">
+                <h2><a href="others.html">Otros</a></h2>
+                <p>Encuentra otros productos interesantes y útiles para tu día a día.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,150 @@
+Usaremos APIS para servicios en red, utilizan el protocolo http.
+
+Protocolos de internet IETF
+-----------------------
+- HTTP: Capa más avanzada, capa de aplicación
+- TCP: Capa de transporte
+- IP: Capa de internet/red
+
+Protocolos de la red
+-----------------------
+- HTML
+- HTTP
+- URL
+
+Arquitectura Cliente/Servidor
+-----------------------
+
+Los clientes hacen peticiones/request en el protocolo http al servidor web. Lo que nos devuelve el servidor son respuestas/response.
+
+Características
+-----------------------
+
+- Protocolo orientado a transacciones: esquema petición <-> respuesta
+- Petición = Request
+- Respuesta = Response
+- Cliente (user agent) y servidor
+- Información que se transmite = recurso
+- El recurso se identifica por medio de una URL.
+- Protocolo sin estado: no guarda conexiones anteriores, lo que lo hace escalable aunque, al mismo tiempo, es su principal limitación que mitigaremos por medio del desarrollo web (cookies)
+
+
+-----------------------
+
+Método SP URL SP Versión HTTP CRLF
+
+(nombre-cabecera: valor-cabecera (, valor-cabecera)*CRLF)*
+
+Cuerpo del mensaje
+
+
+Ejemplo:
+
+GET /paginas/datos/miperfil.html HTTP/1.1
+
+Host: www.ejemplo.com:80
+
+User-Agent: Morzilla/5.0 (X11; Linux x86_64; rv:91.0)
+
+-----------------------
+
+Versión HTTP SP Cçofigo Estado SP Frase Explicación CRLF
+
+(nombre-cabecera: valor-cabecera (, valor-cabecera)*CRLF)*
+
+Cuerpo del mensaje
+
+Ejemplo:
+
+HTTP/2 200 OK
+
+date: Tue, 12 Jul 2022 09:48:09 GMT
+
+content-type: text/html; charset=utf-8
+
+<html...
+
+Interfaz de Programación de Aplicaciones
+-----------------------
+Conjunto de reglas...
+
+Tipo específico de API que sigue los principios arquitectónicos REST
+
+REST = Transferencia de Estado Representacional
+
+Todas las RESTful API son APIs pero no todas las APIs son RESTful
+
+API: interfaz interacción sw, SOAP, HTTP, etc, con o sin estado, XML, JSON(sobre todo), etc, no hay métodos específicos y es dificil de escalar
+
+RESTful API basado en HTTP, sin estado, JSON (XML también), GET, POST..., escalable y sencilla de usar
+
+24/10/25
+--------------
+DESGRANANDO UN ENDPOINT
+
+- https:/api.library.com/v1/books/10 format=summary&available=true
+
+- http -> Protocolo
+- api.library.com -> Dominio
+- /v1/books/10 -> Recurso solicitado
+- ?format=summary&available=true -> Query parameters
+
+El valor 10 del recurso /v1/books/10 es lo que se denomina PATH PARAMETER y, en este caso, es evidente que es el identificador interno del libro.
+
+UTILIZA RECURSOS RESTFUL
+
+Nombres de recursos: sustantivos en plural
+- /usuarios
+- /productos
+
+Métodos HTTP adecuados: GET, POST, PUT (o PATH), DELETE
+
+MENSAJE DE ERRORES:
+
+Códigos de estado HTTP:
+- 200 -> éxito
+- 201 -> creación exitosa
+- 400 -> solicitud incorrecta
+- 404 -> recurso no encontrado
+- 500 -> error del servidor
+
+Mensajes de error: Proporciona mensajes de error descriptivos en el cuerpo de la respuesta.
+
+
+29/10/25
+-----------------------------------
+
+/doc
+  |-/db/ schema.sql
+  |-/api/ odt
+
+URL de la Api cuando este en produccion -> https://x.x.com/api/v1/... 
+Pondremos /users/login/
+
+Ej:
+{
+
+	"username": str,
+	"password": str
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

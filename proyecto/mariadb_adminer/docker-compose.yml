@@ -1,0 +1,13 @@
+services:
+
+  db:
+    image: mariadb
+    container_name: blago-mariadb
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+
+  adminer:
+    image: adminer
+    container_name: blago-adminer
+    ports:
+      - 8080:8080

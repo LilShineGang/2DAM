@@ -1,0 +1,9 @@
+Crear BBDD con Derby. Usaremos el comando ij -> crea la BBDD
+   -> poner password.
+
+Vamos a IntelliJ y conectamos a Derby.
+Luego CREATE TABLE...(Ver clase Usuario, Investigar autoincremento en Derby)
+
+
+(add, remove, update)
+UsuarioRepository<Usuario> -> ARepository<T> Observable -> IRepository

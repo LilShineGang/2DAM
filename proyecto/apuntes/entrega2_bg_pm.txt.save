@@ -1,0 +1,28 @@
+USER (id, nickname, email, password, image)
+PK: id
+VNN: nickname, email, password
+(Pregunta, que hacemos con image.)
+
+
+GAME (id, gender, name, difficulty, rating, image, category)
+PK: id
+VNN: nickname, email, password, rating, image, category
+
+
+ARCHIEVEMENT (id, difficulty, description)
+
+FORUM(id, name)
+
+BUILDS (name, planner, category, description)
+
+TIER_LIST (name, category, description)
+
+GUIDES (name, difficulty, category)
+
+WIKI (name, category, description)
+
+DISCUSSIONS (id, name, comments, publications, rating)
+
+GROUPS (id, name, admin, description, image)
+
+DM (id, content, timestamp, status)
