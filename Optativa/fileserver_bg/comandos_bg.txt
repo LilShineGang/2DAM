@@ -1,0 +1,7 @@
+docker build -t fileserver-bg .
+
+docker run --name fastapi-bg -d -v upload:/app/uploads/ -p 8182:80 fileserver-bg
+
+docker build -t python-bgapp .
+
+docker run --rm -v upload:/app/uploads python-bgapp
