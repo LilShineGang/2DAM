@@ -1,0 +1,18 @@
+from pydantic import BaseModel (con un pip install tenemos que instalar pydantic por que no esta integrado)
+from dataclasses import dataclass
+
+class MyModel(BaseModel):
+  name:str
+  age:int
+
+@dataclass
+class MyDc:
+  name:str
+  age:int
+
+@app.get("...")
+async def get_user(...):
+  pass
+
+d1 = MyDc(name="Alice", age=20)
+

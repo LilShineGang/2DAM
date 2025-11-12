@@ -35,7 +35,7 @@ with open(archivo_nombre, "w", encoding="utf-8") as archivo:
     for pregunta, respuesta in preguntas_respuestas:
         archivo.write(f"{pregunta}\nRespuesta: {respuesta}\n\n")
 
-print(f"El archivo '{archivo_nombre}' ha sido creado con éxito.")
+print(f"El archivo '{archivo_nombre}' se ha podido crear bien.")
 
 # Leemos y mostramos el contenido del archivo por terminal
 print("\n--- Contenido del archivo Col8.txt ---")
