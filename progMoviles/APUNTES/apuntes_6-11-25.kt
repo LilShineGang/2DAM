@@ -33,3 +33,19 @@ data class EstadoLogin (
   val passwd:String,
   val error:String
 )
+
+
+/*
+ *
+ *
+ *
+ *
+ */
+
+expect interface  -|
+expect fun        -|-commonMain
+
+Sistema de ficheros
+  - Android - Uri
+  - Escritorio - File
+

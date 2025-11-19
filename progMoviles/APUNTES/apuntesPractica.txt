@@ -1,0 +1,37 @@
+# Apuntes práctica moviles
+
+------------------------------------------
+
+Capa de Dominio
+
+------------------------------------------
+
+dataclass Dependiente
+dataclass Categoria -> ArrayList<ProductoId>
+dataclass Producto -> categoriaId
+dataclass Pedido -> ArrayList<LineaPedido>
+dataclass LineaPedido
+
+
+------------------------------------------
+
+Capa de Aplicacion
+
+------------------------------------------
+
+Gestiona y coordina: repositorios y el modelo.
+
+
+ICategoria(Gestiona las categorias)
+IProducto(Gestiona los productos)
+Queremos que un producto se coordine con la categoria.
+|
+|-> ver p = repositorioProducto.getByIdNombre("Pizza")
+|-> var c = repositorioCategoria.getById(p.categoria)
+
+
+Ver permisos
+
+Gestión de ficheros
+
+
