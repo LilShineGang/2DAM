@@ -1,0 +1,8 @@
+1. Proceso: Abstracción que el SO crea para gestionar un programa en ejecución, siendo la unidad a la que se le asignan y aíslan recursos esenciales como su propio espacio de direcciones de memoria virtual... Todo proceso debe contener al menos un hilo de ejecución, que es la unidad mínima que el Planificador mueve entre los estados identificado por un PID.
+
+2. Gestión de Procesos y Estados: 
+	1. Creado
+	2. Esperando
+	3. En ejecución
+	4. Bloqueado (Si necesita que el Planificador le de recursos)
+	5. Terminado
