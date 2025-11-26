@@ -1,0 +1,10 @@
+----------------------------------------------------------------
+Fri Oct 31 22:35:46 CET 2025D001 : [0] The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046), [1] a816c00e-019a-3c32-b23c-00000a0761b0, [2] C:\Users\user\IdeaProjects\GestionUsuariosTemplate\bbdd\usuarios, [3] jdk.internal.loader.ClassLoaders$AppClassLoader@38af3868, [4] file:/C:/Users/user/.gradle/caches/modules-2/files-2.1/org.apache.derby/derby/10.16.1.1/f9ca2054b3e33ec3f3f19df4a7490352d82de54a/derby-10.16.1.1.jar
+java.vendor=Oracle Corporation
+java.runtime.version=17.0.2+8-86
+user.dir=C:\Users\user\IdeaProjects\GestionUsuariosTemplate
+os.name=Windows 11
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+C005 : [0] 
