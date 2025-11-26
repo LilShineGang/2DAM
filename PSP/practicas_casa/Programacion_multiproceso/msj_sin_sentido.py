@@ -21,6 +21,7 @@ async def main(num):
     pid_padre = current_process().pid
     print(f"Proceso padre con PID: {pid_padre} generando {num} mensajes de 30 caracteres")
 
+
     procesos = []
     for i in range(num):
         a = mostrar_mensaje_sin_sentido(i+1)
@@ -29,7 +30,8 @@ async def main(num):
     await asyncio.gather(*procesos)
 
     print(f"Proceso padre con PID {pid_padre}: FIN DEL TRABAJO")
-
+    
+    
 if __name__ == "__main__":
     if len(sys.argv) > 1:
         num = int(sys.argv[1])

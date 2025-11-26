@@ -1,0 +1,29 @@
+services:
+
+  db:
+    image: mariadb
+    container_name: dan-mariadb
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+    networks:
+      - dan-network
+    volumes:
+      - ./mariadb_data:/var/lib/mysql
+#      - dan-volumen:/var/lib/mysql
+
+  adminer:
+    image: adminer
+    container_name: dan-adminer
+    ports:
+      - 9000:8080
+    networks:
+      - dan-network
+
+networks:
+  dan-network:
+
+#volumes:
+#  dan-volumen:
+
+# docker compose up / iniciar
+# docker compose down / bajar
