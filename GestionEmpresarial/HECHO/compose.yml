@@ -1,0 +1,30 @@
+services:
+
+  postgres:
+    image: postgres
+    container_name: practica_postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    networks:
+      - practica_net
+    volumes:
+      - practica_postgres_data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: practica_pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - 8989:80
+    networks:
+      - practica_net
+
+networks:
+  practica_net:
+
+volumes:
+  practica_postgres_data:
+
