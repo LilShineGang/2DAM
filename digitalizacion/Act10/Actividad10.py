@@ -47,18 +47,19 @@ for i, texto in enumerate(tecnologias):
         columna = 0
         fila += 1
 
-# Configurar columnas para que se expandan uniformemente [cite: 10]
+# Configurar columnas para que se expandan uniformemente
 for c in range(2):
     frame.grid_columnconfigure(c, weight=1, uniform="col")
     # hace que cada columna se expanda proporcionadamente y todas tengan el mismo ancho
 
 
-# Configurar filas para que se expandan uniformemente [cite: 10]
+# Configurar filas para que se expandan uniformemente
 for r in range(4):
     frame.grid_rowconfigure(r, weight=1, uniform="row")
     # hace que cada fila se expanda proporcionadamente y todas tengan la misma altura
 
 root.mainloop()
+
 
 
 

@@ -1,0 +1,23 @@
+Practica PSP (PPM)
+-------------------
+
+El programa recibe un directorio con imagenes en formato ppm (Se especifican todos los pixeles) o sin imagenes y el programa 
+creara tantos procesos como imagenes y los procesos contaran los RGB de cada imagen ademas que creara 3 imagenes las cuales 
+sera el nombre y los colores y la imagen sera todos los cuadraditos con el color y los demas en negro
+
+Hay que garantizar que solo esten trabajando 4 procesos (hay que utilizar un semaforo de 4), los demás tendrán que esperar a 
+que terminen.
+
+Todos los ficheros empezan con una línea que contiene la letra "P" y un número. Lo que viene a continuación es un 
+separador(puede ir un spc, \r, \n o \t). Por ejemplo 4 4 (ancho y alto de la imagen 4 + separador + 4), el tercer y cuarto 
+valor que te encuentras en el fichero, son el ancho y el alto.
+
+A continuación empeza el "raster", todos los píxeles en orden (0 0 0, esto es el primer pixel por ejemplo, el tercer pixel 0 128 
+0 [verde], luego negro 0 0 0...) Cada 3 instrucciones son un pixel, cada instrucción representa un color, rojo, verde o azul.
+
+Ejs: 
+	for i in range(w*h) recorremos el raster.
+
+	open(___, __) as fd:
+		while c:=fd.read(1):	<-- (aqui estamos leyendo un byte) 
+
