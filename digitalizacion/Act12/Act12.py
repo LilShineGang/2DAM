@@ -4,9 +4,6 @@ root = tk.Tk()
 root.title("Actividad 12 - Blago")
 root.geometry("800x600")
 
-def crear_label(texto, color_texto):
-    return tk.Label(root, text=texto, fg=color_texto, font=("Arial", 16, "bold"),
-                    relief="solid", borderwidth=2, padx=10, pady=5)
 
 # LABEL 1 (Rojo)
 label1 = crear_label("Label 1", "red")
