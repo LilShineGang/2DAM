@@ -1,0 +1,8 @@
+RESUMEN MOVILES T.3-COMUNICACIÖN CON EL EXTERIOR, FUNDAMENTOS HTTP
+
+1. Protocolo HTTP.
+HTTP -> Protocolo de nivel aplicación para transferencia de hipertexto sin estado basado en 
+comunicación muy sencilla.
+  - El protocolo ha evolucionado de la 1.0 a la 3.0, estando esta última en versión de prueba.
+    La evolución ha sido la siguiente:
+      - Versión 1.0. Cada elemento que se solicita necesita establecer un canal de comunicaciones, realizar transferencia, y 
