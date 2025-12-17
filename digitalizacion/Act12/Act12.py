@@ -2,7 +2,7 @@ import tkinter as tk
 
 root = tk.Tk()
 root.title("Actividad 12 - Blago")
-root.geometry("800x600")
+root.geometry("250x250")
 
 
 # LABEL 1 (Rojo)
