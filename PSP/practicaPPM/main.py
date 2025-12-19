@@ -1,52 +1,80 @@
-import os
 import sys
-from multiprocessing import Process
+from multiprocessing import Process, Array
 
-def main():
-    pass
+def leer_ppm(ruta):
+    with open(ruta, 'r') as f:
+        lineas = f.read().split()
+    
+    tokens = [t for t in lineas if not t.startswith('#')]
+    
+    if tokens[0] != 'P3':
+        print("Error: Este código espera una imagen PPM formato P3 (texto).")
+        sys.exit(1)
+    
+    ancho = int(tokens[1])
+    alto = int(tokens[2])
+    max_val = int(tokens[3])
+    pixeles = [int(x) for x in tokens[4:]]
+    
+    return ancho, alto, max_val, pixeles
 
-def red(input_path, filename):
-
-    # Leer la imagen PPM
-    with open(os.path.join(input_path, filename), 'r') as f:
-        header = []
-        while len(header) < 3:
-            line = f.readline()
-            if line.startswith('#'):
-                continue
-            header.append(line.strip())
-        magic, size, maxval = header
-        width, height = map(int, size.split())
-        pixels = []
-        for line in f:
-            if line.startswith('#') or not line.strip():
-                continue
-            pixels.extend(map(int, line.strip().split()))
-
-    # Procesar píxeles: solo dejar los rojos, el resto negro
-    new_pixels = []
-    for i in range(0, len(pixels), 3):
-        r, g, b = pixels[i:i+3]
-        if r > 0 and g == 0 and b == 0:
-            new_pixels.extend([r, g, b])
-        else:
-            new_pixels.extend([0, 0, 0])
+class ColorFilter(Process):
+    def __init__(self, output_name, shared_pixels, width, height, max_val, swiper):
+        super().__init__()
+        self.output_name = output_name
+        self.shared_pixels = shared_pixels  # array
+        self.width = width
+        self.height = height
+        self.max_val = max_val
+        self.swiper = swiper # 0 Rojo, 1 Verde, 2 Azul
+    
+    def run(self):
+        print(f"Proceso {self.name} (PID: {self.pid}) generando {self.output_name}...")
+        
+        with open(self.output_name, 'w') as f:
+            f.write(f"P3\n{self.width} {self.height}\n{self.max_val}\n")
             
-    # Guardar la nueva imagen PPM
-    output_filename = f'red_{filename}'
-    with open(os.path.join(input_path, output_filename), 'w') as f:
-        f.write(f'{magic}\n{width} {height}\n{maxval}\n')
-        for i in range(0, len(new_pixels), 3):
-            f.write(f'{new_pixels[i]} {new_pixels[i+1]} {new_pixels[i+2]}\n')
+            total_values = len(self.shared_pixels)
+            
+            for i in range(0, total_values, 3):
+                r = self.shared_pixels[i]
+                g = self.shared_pixels[i+1]
+                b = self.shared_pixels[i+2]
+                
+                if self.swiper == 0:
+                    f.write(f"{r} 0 0\n")
+                elif self.swiper == 1:
+                    f.write(f"0 {g} 0\n")
+                elif self.swiper == 2:
+                    f.write(f"0 0 {b}\n")
+                    
+        print(f"Proceso {self.name} ha terminado.")
 
-def blue():
-    pass
-
-def green():
-    pass
 
 if __name__ == '__main__':
-    main()
+
+    if len(sys.argv) < 2:
+        print("Uso: python main.py imagen.ppm")
+        sys.exit(1)
+        
+    archivo_entrada = sys.argv[1]
+
+    print("Leyendo imagen...")
+    w, h, max_v, datos_lista = leer_ppm(archivo_entrada)
+    
+    pixel_array = Array('i', datos_lista)
+    
+    p_red = ColorFilter("solo_rojo.ppm", pixel_array, w, h, max_v, 0)
+    p_green = ColorFilter("solo_verde.ppm", pixel_array, w, h, max_v, 1)
+    p_blue = ColorFilter("solo_azul.ppm", pixel_array, w, h, max_v, 2)
+    
+    procesos = [p_red, p_green, p_blue]
+    
+    for p in procesos:
+        p.start()
+        
+    for p in procesos:
+        p.join()
 
 '''
 class Img():

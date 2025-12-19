@@ -1,8 +1,97 @@
 RESUMEN MOVILES T.3-COMUNICACIÖN CON EL EXTERIOR, FUNDAMENTOS HTTP
+-----------------------------------------------------------------------
 
 1. Protocolo HTTP.
-HTTP -> Protocolo de nivel aplicación para transferencia de hipertexto sin estado basado en 
-comunicación muy sencilla.
-  - El protocolo ha evolucionado de la 1.0 a la 3.0, estando esta última en versión de prueba.
-    La evolución ha sido la siguiente:
-      - Versión 1.0. Cada elemento que se solicita necesita establecer un canal de comunicaciones, realizar transferencia, y 
+
+  Protocolo de capa aplicacion sin estado, se tuvieron que inventar cosas para que pudiera tener estado pero por defecto no tiene. Funciona con peticiones y respuestas. Salió del hipertexto(html) y empezaron a salir cosas nuevas como los servicios REST.
+
+    Versiones:
+      · 1.0
+      · 1.1
+      · 2.0
+      · 3.0
+    Hasta la versión 2.0 se utilizada TCP, desde la 3.0 se usa UDP con un nuevo protocolo llamado QUIC.
+     
+  Unidad de datos = dominio + puerto + ruta + opcionalmente lista de atributos para personalizar la solicitud.
+
+  Como se hace la petición:
+    · Línea de comienzo: http...
+    · Líneas de encabezado o cero acabadas en salto de línea.
+    · Separador.
+    · Contenido o cuerpo del mensaje.
+
+  Tipos de peticiones más comúnes:
+    · GET: se utiliza para obtener información del servidor. Respuestas: 200 OK/404 not found o 400 bad request.
+    · POST: se utiliza para enviar la información desde el cliente. Respuesta: 201 created.
+    · PUT: se utilizan para actualizar datos del servidor. Respuesta: 201 created/204 no response.
+    · DELETE: se utiliza para borrar un recurso. Respuesta: 200 OK
+    · OPTIONS: se utiliza para obtener como cliente información del servidor y demás.
+
+  Método de respuestas(Response)
+    Importantes:
+      · 200 OK
+      · 201 Creaeted
+      · 403 Forbidden
+      · 404 Not found
+      · 500 Internal server error
+      · 503 Service Unavailable
+
+  Cabeceras más importantes de HTTP
+    · Server
+    · Age
+    · Cache-control
+    · Content-Encoding
+    · Expires
+    · Location
+    · Set-Cookie
+    · Uno de los encabezados más importantes es 'user-Agent'.
+
+  Tipos MIME
+    Son una forma abierta de representar el contenido de los datos. Indican el tipo de archivo que se transfiere del servidor web al cliente y/o navegador web.
+
+
+2. Servicios Web REST.
+----------------------------------------------------------------------------------------------------------------
+
+API REST[HTTP]
+----------------
+  Se basan en:
+    · Recurso(Categoria, Producto, Dependiente, Pedido).
+    · Métodos HTTP -> GET, POST, PUT, DELETE.
+    · Códigos de los mensajes
+
+  Formatos de datos:
+    · JSON
+    · XML
+
+  Es independiente de la plataforma
+  Ej: Tenemos una ruta en el servidor -> /admin/x -|-> GET -> lista de productos en JSON
+      	      	       	     	      	 	   |-> GET/{id} -> obtiene el producto con ID {id}
+						   |-> POST -> 201, 404, 500...
+						   |-> PUT/{id} -> ingresa el id
+						   |-> DELETE/{id} -> elimina el id
+						   
+----------------------------------------------------------------------------------------------------------------
+  Evolución servicios REST:
+
+    · 2010-2013:
+      - API keys básicas
+      - Autentificación básica y seguridad debil con pocas estandarizaciones.
+
+    · 2014-2017:
+      - Adopción masiva de OAuth 2.0 (inicio sesión por google sin necesidad de ingresar tus datos por ejemplo)
+      - Aparición JWT para microservicios (Netflix, HBO...)
+      - Controles de CORS y foltros y middlewares de seguridad estandarizados.
+
+    · 2018-2021: 
+      - Comienzo de uso de rotación de tokens
+      - Refresh tojens en las APIs
+      - Firmas HMAC y sistemas de API Gateway. 
+
+    · 2022-Actualidad:
+      - OAuth 2.1
+      - mTLS para empresas y banca
+      - Seguridad declarativa en frameworks modernos
+      - Uso de API Gateways + WAF y Token Binding, Proof-of-Possession(DPoP).
+
+  JWT: Hash en el cual le puedes meter información. Cada vez que haces la peticion tienes que meter el token en una cabecera especial llamada autorization.
