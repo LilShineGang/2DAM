@@ -1,0 +1,42 @@
+1º) Clasifica las siguientes cuentas en activo, pasivo y patrimonio neto y presenta la información ordenada en masas en un balance:
+
+ACTIVO NO CORRIENTE - 5500€
+--------------------
+  Inmobilizado material
+  ---------------------
+    - Mobiliario: 4000€
+    - Herramientas: 1500€
+
+ACTIVO CORRIENTE - 11500€
+--------------------
+  Existencias
+  ------------
+    - Mercaderías: 5000€
+  
+  Realizable
+  -----------
+    - IVA soportado de compras: 2500€
+    - Deudas de los clientes: 1000€
+
+  Disponible
+  -----------
+    - Dinero en el banco: 3000€
+
+TOTAL ACTIVO -> 17000€
+
+-------------------------------------
+
+PATRIMONIO NETO - 5000€
+--------------------
+  - Capital: 5000€
+
+PASIVO NO CORRIENTE - 7000€
+--------------------
+  - Préstamo del banco a 3 años: 5000€
+
+PASIVO CORRIENTE - 7000€
+--------------------
+  - Deudas con los proveedores: 2000€
+  - IVA repercutido de ventas: 5000€
+
+TOTAL PATRIMONIO NETO + PASIVO -> 17000€

@@ -1,0 +1,17 @@
+ACCESO A DATOS
+-----------------
+UT3. HERRAMIENTAS DE MAPEO OBJETO RELACIONAL
+----------------------------------------------
+
+2. Concepto de mapeo objeto/relacional
+  -
+
+3. Características de las herramientas ORM. Herramientas ORM más utilizadas.
+  -
+
+-----------------
+
+Versiones de JPA/Jakarta Persistance(estandar para versiones Java)
+  - Hibernate -> Oracle JSR Estandar -> JPA...2017 -> Fundación Eclipse JEE(JDA) -> Jakarta EE
+    && Jakarta Persistance se sigue llamando coloquialmente JDA // Versiones API JPA -> 2.0,
+    3.0, 3.1(EclipseLink/ApacheOpenJDK), 3.2(Hibernate), (4.0 en desarrollo).

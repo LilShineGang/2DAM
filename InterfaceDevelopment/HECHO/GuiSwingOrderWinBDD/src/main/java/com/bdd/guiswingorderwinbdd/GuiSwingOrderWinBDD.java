@@ -1,5 +1,8 @@
 package com.bdd.guiswingorderwinbdd;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.InputEvent;
 import java.time.LocalDateTime;
@@ -16,12 +19,81 @@ public class GuiSwingOrderWinBDD extends javax.swing.JFrame {
     public GuiSwingOrderWinBDD() {
         initComponents();
         configurarVentana(); // Carga icono y menús
+        estiloVentana();
     }
 
-    /**
-     * Configura el Icono de la ventana y la Barra de Menú.
-     */
+    private void estiloVentana() {
+        Color darkGrey = new Color(45, 45, 48);      // Fondo de la ventana
+        Color lightGrey = new Color(60, 60, 60);     // Fondo de campos de texto
+        Color vibrantGreen = new Color(40, 167, 69);  // Color de botones
+        Color textBlack = Color.BLACK;                // Texto para botones verdes
+        Color textWhite = Color.WHITE;                // Texto para labels y selectores
+
+        // 1. Fondo de la ventana principal
+        this.getContentPane().setBackground(darkGrey);
+
+        // 2. Título principal (jLabel8)
+        jLabel8.setForeground(vibrantGreen);
+        jLabel8.setFont(new Font("Arial", Font.BOLD, 22));
+
+        // 3. Estilo de Botones (Grandes, Cuadrados, Fondo Verde, Letra Negra)
+        JButton[] botones = {btnInfo, btnVerPedido, btnAcercaDe, btnCalculadora, btnSalir, btnActualizarFecha, btnComprobarEmail};
+        for (JButton btn : botones) {
+            btn.setBackground(vibrantGreen);
+            btn.setForeground(textBlack); // Letras en negro como pediste
+            btn.setFont(new Font("Arial", Font.BOLD, 12));
+            btn.setFocusPainted(false);
+            btn.setBorder(BorderFactory.createLineBorder(vibrantGreen.darker(), 2));
+            btn.setPreferredSize(new Dimension(110, 40));
+        }
+
+        // 4. SELECTORES TRANSPARENTES (RadioButtons y Checkbox)
+        // Aquí quitamos el fondo verde y los hacemos transparentes
+        checkFactura.setOpaque(false);
+        checkFactura.setForeground(textWhite); // Texto en blanco para que se vea
+        checkFactura.setFont(new Font("Arial", Font.PLAIN, 13));
+
+        JRadioButton[] radios = {radioRestaurante, radioParaLlevar, radioEfectivo, radioTarjeta};
+        for (JRadioButton rb : radios) {
+            rb.setOpaque(false); // Hace que el fondo sea transparente
+            rb.setForeground(textWhite); // Texto en blanco
+            rb.setFont(new Font("Arial", Font.PLAIN, 13));
+        }
+
+        // 5. Labels informativos (Texto en blanco)
+        JLabel[] labels = {jLabel1, jLabel2, jLabel3, jLabel4, jLabel5, jLabel6, jLabel7, lblFechaHora};
+        for (JLabel lbl : labels) {
+            lbl.setForeground(textWhite);
+        }
+
+        // 6. Campos de entrada y ComboBox
+        JTextField[] campos = {txtNombreCliente, txtEmail, txtNumeroMesa, txtTotal};
+        for (JTextField txt : campos) {
+            txt.setBackground(lightGrey);
+            txt.setForeground(textWhite);
+            txt.setBorder(BorderFactory.createLineBorder(vibrantGreen, 2));
+        }
+        txtComentarios.setBackground(lightGrey);
+        txtComentarios.setForeground(textWhite);
+        txtComentarios.setBorder(BorderFactory.createLineBorder(vibrantGreen, 2));
+
+        comboPropina.setBackground(lightGrey);
+        comboPropina.setForeground(textWhite);
+
+        this.setSize(650, 700);
+        this.revalidate();
+        this.repaint();
+    }
+
     private void configurarVentana() {
+
+        // cambios .exe localdate
+        Timer timerReloj = new Timer(1000, e -> {
+            String tiempoReal = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+            lblFechaHora.setText(tiempoReal);
+        });
+        timerReloj.start();
+
         // 1. Cargar Icono
         try {
             ImageIcon icon = new ImageIcon(getClass().getResource("/img_BDD/icon-BDD.png"));
@@ -83,7 +155,6 @@ public class GuiSwingOrderWinBDD extends javax.swing.JFrame {
     }
 
     // --- Lógica de Botones y Eventos ---
-
     private void btnActualizarFechaActionPerformed(java.awt.event.ActionEvent evt) {
         lblFechaHora.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")));
     }
@@ -111,7 +182,9 @@ public class GuiSwingOrderWinBDD extends javax.swing.JFrame {
     }
 
     private void btnVerPedidoActionPerformed(java.awt.event.ActionEvent evt) {
-        if (!validarFormulario()) return;
+        if (!validarFormulario()) {
+            return;
+        }
 
         StringBuilder resumen = new StringBuilder();
         resumen.append("<html><b>RESUMEN DEL PEDIDO</b><br><br>");
@@ -129,7 +202,7 @@ public class GuiSwingOrderWinBDD extends javax.swing.JFrame {
         resumen.append("<b>Pago: </b>").append(radioEfectivo.isSelected() ? "Efectivo" : "Tarjeta").append("<br>");
         resumen.append("<b>Propina: </b>").append(comboPropina.getSelectedItem()).append("<br>");
         resumen.append("<b>Factura: </b>").append(checkFactura.isSelected() ? "Sí" : "No").append("<br>");
-        
+
         resumen.append("<br><b>Comentarios: </b><br>").append(txtComentarios.getText().replace("\n", "<br>"));
         resumen.append("</html>");
 
@@ -152,10 +225,16 @@ public class GuiSwingOrderWinBDD extends javax.swing.JFrame {
     }
 
     private void btnInfoActionPerformed(java.awt.event.ActionEvent evt) {
-        String info = "<html><b>Bienvenido</b><br>"
-                + "<b>Sistema:</b> " + System.getProperty("os.name") + "<br>"
-                + "<b>Usuario:</b> " + System.getProperty("user.name") + "</html>";
+        String info = "<html><b>Welcome</b><br>"
+                + "<b>System:</b> " + System.getProperty("os.name") + "<br>"
+                + "<b>User:</b> " + System.getProperty("user.name") + "</html>";
+
         mostrarMensaje(info, JOptionPane.INFORMATION_MESSAGE);
+
+        this.setEnabled(false);
+
+        LoginForm loginWindow = new LoginForm(this);
+        loginWindow.setVisible(true);
     }
 
     private void btnAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {
@@ -170,7 +249,6 @@ public class GuiSwingOrderWinBDD extends javax.swing.JFrame {
     }
 
     // --- Helpers y Validaciones ---
-
     private void mostrarMensaje(String msg, int tipo) {
         JOptionPane.showMessageDialog(this, msg, "Información", tipo);
     }
@@ -191,7 +269,9 @@ public class GuiSwingOrderWinBDD extends javax.swing.JFrame {
         }
         if (radioRestaurante.isSelected()) {
             try {
-                if (Integer.parseInt(txtNumeroMesa.getText().trim()) <= 0) throw new NumberFormatException();
+                if (Integer.parseInt(txtNumeroMesa.getText().trim()) <= 0) {
+                    throw new NumberFormatException();
+                }
             } catch (NumberFormatException e) {
                 mostrarMensaje("Número de mesa inválido.", JOptionPane.ERROR_MESSAGE);
                 txtNumeroMesa.requestFocus();
@@ -211,11 +291,17 @@ public class GuiSwingOrderWinBDD extends javax.swing.JFrame {
     }
 
     // --- Código Generado por NetBeans (Eventos vacíos obligatorios) ---
-    
-    private void txtNumeroMesaActionPerformed(java.awt.event.ActionEvent evt) {}
-    private void txtTotalActionPerformed(java.awt.event.ActionEvent evt) {}
-    private void comboPropinaActionPerformed(java.awt.event.ActionEvent evt) {}
-    private void checkFacturaActionPerformed(java.awt.event.ActionEvent evt) {}
+    private void txtNumeroMesaActionPerformed(java.awt.event.ActionEvent evt) {
+    }
+
+    private void txtTotalActionPerformed(java.awt.event.ActionEvent evt) {
+    }
+
+    private void comboPropinaActionPerformed(java.awt.event.ActionEvent evt) {
+    }
+
+    private void checkFacturaActionPerformed(java.awt.event.ActionEvent evt) {
+    }
 
     public static void main(String args[]) {
         try {
